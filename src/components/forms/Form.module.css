@@ -72,6 +72,13 @@
       font-size: 14px;
       font-family: 'Inter';
     }
+
+    .phka{
+      color: red;
+      font-size: 15px;
+      font-family: "Inter";
+      margin-top: -15px;
+    }
   }
 
   .fon {
@@ -94,7 +101,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 52px;
+    margin-top: 32px;
     flex-direction: column;
     .colontitul {
       width: 100%;
@@ -140,7 +147,7 @@
       font-size: 11px;
       font-family: 'Inter';
       color: black;
-      margin-top: 65px;
+      margin-top: 35px;
 
       > span {
         color: #cdd0d5;

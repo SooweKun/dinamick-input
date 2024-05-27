@@ -1,4 +1,3 @@
-
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import {useForm} from 'react-hook-form';
@@ -19,9 +18,15 @@ export const Form = () => {
 
 			<div className={styles.fon}></div>
 			<form className={styles.inpt}>
-				<input type='text' placeholder='Name' {...register('Name', {required: true, minLength: 8})}/>
-				<input type='text' placeholder='Mail'{...register('Mail', {pattern: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/})} />
-				<input type='text' placeholder='Password' {...register('Password', {min: 8, pattern: /[a-z A-Z 0-9]/i})}/>
+				<input type='text' placeholder='Name' {...register('Name', {required: true, minLength: 8})} />
+				{errors?.Name?.type === 'minLength' && <p className={styles.phka}>Форма должна содержать минимум 8 символов</p>}
+				{errors?.Name?.type === 'required' && <p className={styles.phka}>Форма не заполнена</p>}
+				<input type='text' placeholder='Mail'{...register('Mail', {pattern: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, required: true})} />
+				{errors?.Mail?.type === 'required' && <p className={styles.phka}>Форма не заполнена</p>}
+				{errors?.Mail?.type === 'pattern' && <p className={styles.phka}>Форма заполнена не верно</p>}
+				<input type='text' placeholder='Password' {...register('Password', {minLength: 8, required: true})} />
+				{errors?.Password?.type === 'required' && <p className={styles.phka}>Форма не заполнена</p>}
+				{errors?.Password?.type === 'minLength' && <p className={styles.phka}>Форма должна содержать минимум 8 символов</p>}
 				<a href='#'>Forgot password?</a>
 				<button onClick={handleSubmit(check)}>Sing in</button>
 			</form>
@@ -44,3 +49,5 @@ export const Form = () => {
 		</div>
 	);
 };
+
+// Застрелите меня нахуй программиста, который писал этот код.

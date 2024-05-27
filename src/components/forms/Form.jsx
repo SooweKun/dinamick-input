@@ -5,7 +5,11 @@ import {useForm} from 'react-hook-form';
 import styles from './Form.module.css';
 
 export const Form = () => {
-	const {register, handleSubmit} = useForm();
+	const {register, handleSubmit, watch, formState: {errors}} = useForm();
+	const check = data => {
+		console.log(data);
+	};
+
 	return (
 		<div className={styles.form}>
 			<div className={styles.back}>
@@ -14,13 +18,13 @@ export const Form = () => {
 			</div>
 
 			<div className={styles.fon}></div>
-			<div className={styles.inpt}>
-				<input type='text' placeholder='Name' />
-				<input type='text' placeholder='Mail' />
-				<input type='text' placeholder='Password' />
+			<form className={styles.inpt}>
+				<input type='text' placeholder='Name' {...register('Name', {required: true, minLength: 8})}/>
+				<input type='text' placeholder='Mail'{...register('Mail', {pattern: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/})} />
+				<input type='text' placeholder='Password' {...register('Password', {min: 8, pattern: /[a-z A-Z 0-9]/i})}/>
 				<a href='#'>Forgot password?</a>
-				<button>Sing in</button>
-			</div>
+				<button onClick={handleSubmit(check)}>Sing in</button>
+			</form>
 
 			{/* может быть компонентом содержащим пропсы children являющиеся media или же просто массивом url с картинками */}
 			<div className={styles.atribute}>
